@@ -1,0 +1,40 @@
+
+{% if messages %}
+  <ul class=flashes>
+  {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+<form action="/users" method="get">
+    <input type="search" name="nickname" value="{{ search|default('', true) }}" />
+    <input type="submit" value="Search" />
+</form>
+<table border="1">
+    <caption>Users</caption>
+    <thead>
+        <th>
+            <td>Nickname</td>
+            <td>Email</td>
+        </th>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>
+                <a href="{{ url_for('edit_user', id=user.id) }}">{{ user.nickname }}</a>
+            </td>
+            <td>{{ user.email }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<a href="{{ url_for('show_new_user_form') }}">add user</a>
+
+<form action="{{ url_for('logout')}}" method="post">
+    <input type="submit" value="Logout" />
+</form>
+

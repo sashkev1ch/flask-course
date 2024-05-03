@@ -1,0 +1,25 @@
+<!-- templates/users/new.html -->
+<form action="{{ url_for('create_user') }}" method="post">
+    <div>
+      <label>
+        Nickname:
+        <input type="text" name="nickname" value="{{ user.nickname | default('', True) }}">
+      </label>
+      {% if errors.nickname %}
+            <div>{{ errors.nickname }}</div>
+      {% endif %}
+    </div>
+    <div>
+      <label>
+        Email:
+        <input type="email" name="email", value="{{ user.email | default('', True) }}">
+      </label>
+      {% if errors.email %}
+      <div>{{ errors.email }}</div>
+      {% endif %}
+      </div>
+    <div>
+    <input type="submit" value="Submit">
+    </div>
+  </form>
+  
