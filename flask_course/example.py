@@ -47,7 +47,6 @@ def users():
     if not session.get("authorized", False):
         return redirect(url_for("login"), code=302)
 
-    # result = json.loads(request.cookies.get("users", json.dumps([])))
     result = data_storage.get()
     name = request.args.get("nickname")
     messages = get_flashed_messages(with_categories=True)
